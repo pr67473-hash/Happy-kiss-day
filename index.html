@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Kiss Day 💋</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+  /* Teddy */
+  .teddy {
+    font-size: 80px;
+    cursor: pointer;
+    animation: teddyBounce 2s infinite;
+  }
+
+  @keyframes teddyBounce {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  /* Sakura petals */
+  .sakura {
+    position: absolute;
+    top: -20px;
+    font-size: 20px;
+    animation: sakuraFall linear forwards;
+    pointer-events: none;
+  }
+
+  @keyframes sakuraFall {
+    to {
+      transform: translateY(100vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  /* Teddy kiss pop */
+  .teddy-kiss {
+    position: absolute;
+    font-size: 26px;
+    animation: popKiss 1.5s forwards;
+  }
+
+  @keyframes popKiss {
+    0% { transform: scale(0); opacity: 1; }
+    100% { transform: scale(1.5) translateY(-40px); opacity: 0; }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="hearts"></div>
+<div class="roses"></div>
+
+<div class="card">
+
+  <h1 class="cute-title">Happy Kiss Day 💋</h1>
+  <div class="name">Khushi 💖</div>
+
+  <!-- Teddy -->
+  <div class="teddy" onclick="teddyKiss()">🧸</div>
+  <div class="cute-msg" id="cuteText">teddy wants a kiss 🥺</div>
+
+  <!-- Kiss emoji -->
+  <div class="kiss-emoji" onclick="cuteKiss()">😚</div>
+
+  <div class="counter">
+    💋 Kisses sent: <span id="count">0</span>
+  </div>
+
+  <p class="from">— hugs & kisses, Piyush 🥰</p>
+
+  <button onclick="cuteKiss()">Give Kiss 😘</button>
+
+  <div class="week">
+    💝 Valentine Week 💝<br>
+    Promise 🤍 Hug 🤗 Kiss 💋 Love ❤️
+  </div>
+
+</div>
+
+<div id="popup">
+  <div class="popup">
+    <h2>🧸💋 MUAHH 💋🧸</h2>
+    <p>Teddy kissed you with extra love 🥹💖</p>
+    <button onclick="closePopup()">Close 😚</button>
+  </div>
+</div>
+
+<script>
+/* Kiss counter */
+let kisses = 0;
+const texts = [
+  "teddy is blushing 🧸💖",
+  "mwahhh 😚",
+  "that was too cute 🥹",
+  "one more kiss pls 🥺",
+  "teddy loves you 💕"
+];
+
+/* Teddy kiss */
+function teddyKiss() {
+  kisses++;
+  document.getElementById("count").innerText = kisses;
+  document.getElementById("cuteText").innerText =
+    texts[Math.floor(Math.random() * texts.length)];
+
+  for (let i = 0; i < 6; i++) {
+    const k = document.createElement("div");
+    k.className = "teddy-kiss";
+    k.innerHTML = "💋";
+    k.style.left = Math.random() * 100 + "vw";
+    k.style.top = Math.random() * 50 + "vh";
+    document.body.appendChild(k);
+    setTimeout(() => k.remove(), 1500);
+  }
+}
+
+/* Sakura petals */
+setInterval(() => {
+  const s = document.createElement("div");
+  s.className = "sakura";
+  s.innerHTML = "🌸";
+  s.style.left = Math.random() * 100 + "vw";
+  s.style.fontSize = Math.random() * 10 + 14 + "px";
+  s.style.animationDuration = Math.random() * 3 + 4 + "s";
+  document.body.appendChild(s);
+  setTimeout(() => s.remove(), 7000);
+}, 500);
+</script>
+
+<script src="script.js"></script>
+</body>
+</html>
